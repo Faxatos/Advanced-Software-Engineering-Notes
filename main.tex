@@ -1,0 +1,312 @@
+% Tipo di documento. L'uso di twoside implica che i capitoli inizino sempre con la prima pagina a sinistra, eventualmente lasciando una pagina vuota nel capitolo precedente. Se questa cosa è fastidiosa, è possibile rimuoverlo. 
+\documentclass[a4paper,openright]{report}
+
+% Dimensione dei margini
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry} 
+% Dimensione del font
+\usepackage[fontsize=13pt]{scrextend}
+% Lingua del testo
+\usepackage[english]{babel}
+% Lingua per la bibliografia
+\usepackage[fixlanguage]{babelbib}
+% Codifica del testo
+\usepackage[utf8]{inputenc} 
+% Encoding del testo
+\usepackage[T1]{fontenc}
+% Permette di generare testo fittizio. Mi è stato utile 
+% per capire quale sarebbe stata l'impostazione del 
+% testo nella pagina prima che scrivessi un determinato paragrafo
+\usepackage{lipsum}
+% Per ruotare le immagini
+\usepackage{rotating}
+% Per modificare l'header delle pagine 
+\usepackage{fancyhdr}      
+
+% wrap images package
+\usepackage{wrapfig}
+% \makeFNbelow by default 
+\usepackage{ftnxtra}
+\usepackage{fnpos}
+%caption package
+\usepackage{caption}
+% Librerie matematiche
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}         
+
+% Uso delle immagini
+\usepackage{graphicx}
+% Uso dei colori
+\usepackage[dvipsnames]{xcolor}         
+% Uso dei listing per il codice
+\usepackage{listings}          
+% Per inserire gli hyperlinks tra i vari elementi del testo 
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref}     
+% Diversi tipi di sottolineature
+\usepackage[normalem]{ulem}
+% Custom colors
+\usepackage{color}
+%Immagini all'interno di liste
+\usepackage{float,graphicx}
+%Contiene simboli
+\usepackage{fontawesome}
+%contiene faccine
+\usepackage{wasysym}
+
+\usepackage[verbose]{newunicodechar}
+
+% -----------------------------------------------------------------
+
+% Modifica lo stile dell'header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\rightmark}
+\rhead{\textbf{\thepage}}
+\fancyfoot{}
+\setlength{\headheight}{12.5pt}
+
+% Rimuove il numero di pagina all'inizio dei capitoli
+\fancypagestyle{plain}{
+  \fancyfoot{}
+  \fancyhead{}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+%definizione di terminale su Latex
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{terminalbgcolor}{HTML}{330033}
+\definecolor{terminalrulecolor}{HTML}{000099}
+
+\newcommand{\lstconsolestyle}{
+    \lstset{ %lstset legato a output
+    	backgroundcolor=\color{terminalbgcolor},
+    	basicstyle=\color{white}\fontfamily{fvm}\footnotesize\selectfont\scriptsize,
+    	breakatwhitespace=false,  
+    	breaklines=true,
+    	captionpos=b,
+    	commentstyle=\color{mygreen},
+    	deletekeywords={...},
+    	escapeinside={\%*}{*)},
+    	extendedchars=true,
+    	frame=single,
+    	keepspaces=true,
+    	keywordstyle=\color{blue},
+    	language=none,
+    	morekeywords={*,...},
+    	numbers=none,
+    	numbersep=5pt,
+        framerule=2pt,
+    	numberstyle=\color{mygray}\tiny\selectfont,
+    	rulecolor=\color{terminalrulecolor},
+    	showspaces=false,
+    	showstringspaces=false,
+    	showtabs=false,
+    	stepnumber=2,
+    	stringstyle=\color{green},
+    	tabsize=2,
+        inputencoding=utf8,
+        extendedchars=true,
+        literate={·}{$\cdot$}1 {✅}{\faCheckSquare}1 {✔}{\faCheck}1
+    }
+}
+
+\newcommand\lstJavaScriptcodestyle{
+    \lstset{
+      backgroundcolor=\color{white},
+      breakatwhitespace=true,  
+      breaklines=true,
+      frame=tb,
+        framerule=0.5pt,
+        rulecolor = \color{black},
+      numbers=left,
+      language=JavaScript,
+      aboveskip=3mm,
+      belowskip=3mm, 
+      showstringspaces=false,
+      columns=flexible,
+      basicstyle={\small\ttfamily},
+      numbers=left,
+      stepnumber=1,
+      numberstyle=\tiny\color{gray},
+      keywordstyle=\color{blue},
+      commentstyle=\color{dkgreen},
+      stringstyle=\color{mauve},
+      rulecolor=\color{black},
+      breaklines=true,
+      breakatwhitespace=true,
+      tabsize=3
+    }
+}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\newcommand\lstPythoncodestyle{
+    \lstset{ %lstset legato a output
+    	language=Python,
+        backgroundcolor=\color{white},
+        basicstyle=\ttm,
+        morekeywords={self},              % Add keywords here
+        keywordstyle=\ttb\color{deepblue},
+        emph={load_dotenv, main, buyerTestCase, generatePlots},          % Custom highlighting
+        emphstyle=\ttb\color{deepred},    % Custom highlighting style
+        stringstyle=\color{deepgreen},
+        frame=tb,                         % Any extra options here
+        framerule=1pt,
+        rulecolor = \color{black},
+        showstringspaces=false
+    }
+}
+
+%lstset legato a codice
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  %language=Java,
+  inputencoding=utf8,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\scriptsize\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+%definisco linguaggio JavaScript
+\lstdefinelanguage{JavaScript}{
+    keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={class, export, boolean, throw, implements, import, this},
+    ndkeywordstyle=\color{darkgray}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    numbers=left,
+    stepnumber=1,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{purple}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    morestring=[b]',
+    morestring=[b]"
+}
+
+%definisco linguaggio vuoto
+\lstdefinelanguage{none}{
+  identifierstyle=
+}
+
+% Margini prima e dopo blocchi di codice, per avere più distanza
+\lstset{aboveskip=20pt,belowskip=20pt}
+
+% Modifica dello stile dei riferimenti, con il testo in cyano
+\hypersetup{
+    colorlinks,
+    linkcolor=black,
+    citecolor=blue,
+    urlcolor=cyan,
+    pdftitle={Advanced Software Engineering notes},
+}
+
+% Aggiunti definizioni, teoremi, linea e listing
+\newtheorem{definition}{Definizione}[section]
+\newtheorem{theorem}{Teorema}[section]
+\providecommand*\definitionautorefname{Definizione}
+\providecommand*\theoremautorefname{Teorema}
+\providecommand*{\listingautorefname}{Listing}
+\providecommand*\lstnumberautorefname{Linea}
+
+\raggedbottom
+
+%\newcommand{\cgs}[1]{{\textcolor{brown}[\textcolor{red}{\bf{GS: }}{ \textcolor{brown}{#1]}}}}             
+%\newcommand{\cmc}[1]{{\textcolor{blue}[\textcolor{magenta}{\bf{MC: }}{ \textcolor{blue}{#1]}}}}
+
+
+\title{Advanced Software Engineering}
+\date{September - December 2023}
+
+\begin{document}
+
+\author{Emiliano Sescu \\ \url{https://github.com/Faxatos}}
+\maketitle
+\renewcommand{\abstractname}{Abstract}
+\begin{abstract}
+
+\noindent These notes follow the structure of the course and the lessons presented by Professor Brogi. Along with the slides used in the lectures, these notes will help you prepare for the theoretical part of the exam. The topics included are:
+
+\begin{itemize}
+    \item Software Products
+    \item Agile Software Engineering
+    \item Features, Scenarios, and Stories
+    \item Software Architecture
+    \item Cloud-based Software
+    \item Microservices Architecture
+    \item Security and Privacy
+    \item Business Process Modeling
+    \item Testing
+    \item DevOps and Code Management
+    \item Edge-Cloud Continuum
+    \item Quantum Software Engineering
+\end{itemize}
+
+\noindent These notes are available for free! If you find them helpful, please consider leaving a follow on my GitHub account: \url{https://github.com/Faxatos} \smiley{}
+
+\end{abstract}
+
+\newpage
+
+\tableofcontents
+
+% Rimuovere se non si vuole la tabella delle figure
+%\listoffigures
+
+%\include{chapters/Introduzione}
+
+\include{chapters/Products}
+
+\include{chapters/Agile}
+
+\include{chapters/Stories}
+
+\include{chapters/SoftwareArchitecture}
+
+\include{chapters/Cloud}
+
+\include{chapters/Micorservices}
+
+\include{chapters/Security and Privacy}
+
+\include{chapters/BusinessProcessModeling}
+
+\include{chapters/Testing}
+
+\include{chapters/DevOps}
+
+\include{chapters/Emerging}
+
+\appendix
+
+\include{chapters/Appendice}
+
+
+%\bibliographystyle{plain}
+%\bibliography{chapters/Bibliografia.bib}
+
+\end{document}
+% -----------------------------------------------------------------

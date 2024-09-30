@@ -1,0 +1,84 @@
+\chapter{Emerging Paradigms in Computing}
+
+\section{Cloud-Edge Continuum}
+
+The \textbf{Cloud-Edge Continuum} aims to combine the strengths of Edge Computing and Cloud Computing by extending cloud services to the Internet of Things (IoT). This results in a \textbf{distributed, heterogeneous infrastructure}. Key benefits of this approach include:
+
+\begin{itemize}
+    \item \textbf{Computing Power}: Access to both cloud resources and edge devices for efficient processing.
+    \item \textbf{Connectivity}: Improved communication between devices, facilitating seamless data transfer.
+    \item \textbf{Low Latency}: Processing data closer to its source reduces delays and enhances responsiveness.
+\end{itemize}
+
+Future applications will primarily be \textbf{containerized, microservice-based} solutions operating on a continuous Cloud-Edge infrastructure. However, managing these applications poses challenges. Both the infrastructure and the applications are constantly changing, leading to potential issues:
+
+\begin{description}
+    \item[Infrastructure Changes]: Node workloads may shift, latency and bandwidth can vary, and nodes might join or leave the network unexpectedly. Temporary connection failures can also occur.
+    \item[Application Changes]: Codebases and requirements are subject to change, necessitating quick adaptations.
+\end{description}
+
+\noindent This highlights the need for ongoing \textbf{management} of application deployments even after the initial launch.
+
+\subsection{Monitoring}
+
+Effective \textbf{monitoring} is essential for tracking both applications and infrastructure. We require a lightweight, fault-tolerant system that can adapt to changes. One effective method is \textbf{continuous reasoning}, which analyzes large systems by focusing on recent changes and reusing previous results whenever possible. Considering both application and infrastructure changes is crucial in the continuum for making decisions about replacing, migrating, restarting, or scaling application services. \\
+
+A recent example discussed is \textbf{FogBrainX}\footnote{https://github.com/di-unipi-socc/fogbrainx}, which evaluates differences in application specifications and monitored infrastructure data. It assists in making decisions about service placement by:
+
+\begin{itemize}
+    \item Adapting to changes in infrastructure, such as node resources or network quality, which may require migrating services,
+    \item Adjusting to shifts in service requirements (like software, hardware, and IoT) or communication needs that might trigger updates,
+    \item Handling additions or removals of services or communication requirements outlined in application specifications.
+\end{itemize}
+
+After FogBrainX makes its decisions, it forwards them to \textbf{FogArm}, which executes the management commands within the Cloud-IoT infrastructure.
+
+\subsection{Decentralized Management}
+
+When it comes to decentralized management, we have two notable approaches:
+
+\begin{description}
+    \item[Osmotic Management]: This method allows application services to adapt based on available resources and application needs. Management policies can undeploy, migrate, or scale applications up or down in real time.
+    
+    \item[Decentralized Management]: Inspired by bacterial behavior, this approach involves:
+    \begin{itemize}
+        \item Assigning each application instance a management agent (similar to a mini-management unit),
+        \item Using simple rules to trigger actions (like undeploying or replicating) based on monitored data,
+        \item Allowing emerging behaviors of applications to facilitate flexibility, which is beneficial for larger infrastructures, although it can be more complex to manage.
+    \end{itemize}
+\end{description}
+
+---
+
+\section{Quantum Software Engineering}
+
+\textbf{Quantum Software Engineering (QSE)} focuses on applying sound engineering principles to develop, operate, and maintain quantum software and its documentation. The primary goal is to create reliable quantum software that performs efficiently on quantum computers while being cost-effective.
+
+The Talavera Manifesto for QSE outlines several important principles, including:
+
+\begin{itemize}
+    \item QSE should be compatible with various quantum programming languages and technologies.
+    \item We should embrace the integration of classical and quantum computing, using quantum computers primarily for specific tasks where they excel, such as solving factorization problems.
+\end{itemize}
+
+\subsection{Quantum Broker}
+
+One practical example of QSE is the \textbf{Quantum Broker}, which addresses the question: “Which Quantum Computer should I use to run my algorithm?” This is particularly useful for clients who may not have extensive knowledge of quantum providers.
+
+Even after selecting a provider and running algorithms, several challenges may arise:
+
+\begin{itemize}
+    \item \textbf{Availability}: What if the Quantum Computer becomes unavailable during execution?
+    \item \textbf{Requirements Accuracy}: How can I balance my needs for cost, time, and accuracy?
+    \item \textbf{Customization}: How can I modify the Quantum Computer’s decision-making process to suit my requirements?
+\end{itemize}
+
+The concept of \textbf{shot distribution} is vital for optimizing quantum computations. By distributing the shots of a quantum circuit across multiple quantum computers, we can enhance performance and reliability. Running the same quantum circuit multiple times helps gather statistical information about outcomes, which is important due to the probabilistic nature of quantum mechanics. We can then combine all this data to form a complete view of the circuit’s performance.
+
+Given a quantum circuit and specific requirements, the quantum broker \textbf{selects the best set of quantum computers} for distributing the shots. For each chosen computer, it identifies the most suitable compilers and the required number of shots. This approach offers several advantages:
+
+\begin{itemize}
+    \item \textbf{Improved Resilience}: Distributing tasks among different quantum systems increases tolerance to failures.
+    \item \textbf{High Customization}: This method allows for significant customization in managing computations.
+    \item \textbf{Partial Distributions}: It enables the creation of partial distributions that can be combined to generate a comprehensive view of the client's circuit execution, with the possibility of more sophisticated merging.
+\end{itemize}
